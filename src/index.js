@@ -1,5 +1,6 @@
 const express = require('express');
 var bodyParser = require('body-parser');
+var multer = require('multer') // HERE
 
 const route = require('./routes/route.js');
 
@@ -8,13 +9,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+app.use(multer().any()) // HERE
 const mongoose = require('mongoose')
 
-mongoose.connect("mongodb+srv://monty-python:SnYUEY4giV9rekw@functionup-backend-coho.0zpfv.mongodb.net/Group16_Project_3_db?authSource=admin&replicaSet=atlas-60843q-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true")
-    .then(() => console.log('mongodb running and connected'))
+mongoose.connect("mongodb+srv://monty-python:SnYUEY4giV9rekw@functionup-backend-coho.0zpfv.mongodb.net/Tarun_Ambekar_db?retryWrites=true&w=majority", { useNewUrlParser: true })
+    .then(() => console.log('mongodb running perfectly on 27017'))
     .catch(err => console.log(err))
-
     
 app.use('/', route);
 
